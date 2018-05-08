@@ -20,37 +20,39 @@
             <div class="page">
                 <div class="page-content login-screen-content">
                     <div class="login-screen-title">SPGE Mobile</div>
-                    <div class="list">
-                        <ul>
-                            <li class="item-content item-input">
-                                <div class="item-inner">
-                                    <div class="item-title item-label">Email</div>
-                                    <div class="item-input-wrap">
-                                        <input type="text" name="username" placeholder="Digite seu email">
+                    <form id="formLogin">
+                        <div class="list">
+                            <ul>
+                                <li class="item-content item-input">
+                                    <div class="item-inner">
+                                        <div class="item-title item-label">Email</div>
+                                        <div class="item-input-wrap">
+                                            <input type="text" name="email" id="email" placeholder="Digite seu email">
+                                        </div>
                                     </div>
-                                </div>
-                            </li>
-                            <li class="item-content item-input">
-                                <div class="item-inner">
-                                    <div class="item-title item-label">Senha</div>
-                                    <div class="item-input-wrap">
-                                        <input type="password" name="password" placeholder="Digite sua senha">
+                                </li>
+                                <li class="item-content item-input">
+                                    <div class="item-inner">
+                                        <div class="item-title item-label">Senha</div>
+                                        <div class="item-input-wrap">
+                                            <input type="password" name="senha" id="senha" placeholder="Digite sua senha">
+                                        </div>
                                     </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="list">
-                        <ul>
-                            <li>
-                                <a href="#" class="item-link list-button login-button">Login</a>
-                            </li>
-                        </ul>
-                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="list">
+                            <ul>
+                                <li>
+                                    <button type="submit" class="button">Login</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </form>    
                 </div>
             </div>
         </div>
-        
+
         <!-- Cordova -->
         <!--
         <script src="cordova.js"></script>
@@ -58,7 +60,7 @@
 
         <!-- Framework7 library -->
         <script src="framework7/js/framework7.min.js"></script>
-
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
         <!-- App routes -->
         <script src="js/routes.js"></script>
 
