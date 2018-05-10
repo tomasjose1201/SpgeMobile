@@ -45,7 +45,7 @@ var app = new Framework7({
 });
 
 // Init/Create views
-/*var homeView = app.views.create('#view-home', {
+var homeView = app.views.create('#view-home', {
  url: '/'
  });
  var catalogView = app.views.create('#view-catalog', {
@@ -53,30 +53,22 @@ var app = new Framework7({
  });
  var settingsView = app.views.create('#view-settings', {
  url: '/settings/'
- });*/
+ });
 
 $(document).ready(function () {
     $$('#formLogin').on('submit', function (e) {
         e.preventDefault();
-        //formData recebe um objeto com todos os inputs do formulário. Para acessar um determinado valor: formData.nameHTMLdoCampo
-        //formData = app.form.convertToData(this);
-        //console.log(formData);
-        /*$.ajax({
-         type: 'GET',
-         contentType: 'application/json',
-         url: "http://localhost:8080/spge/webresources/usuario/1",
-         dataType: "json",
-         //data: formLoginToJSON(),
-         success: function () {
-         alert('Sucesso');
-         }
-         });*/
         $.ajax({
-            type: 'GET',
-            url: 'http://localhost:8080/spge/webresources/usuario/1',
-            dataType: "json",
+            type: 'POST',
+            contentType: 'application/json',
+            url: "http://localhost:8080/spge/webresources/usuario/validar",
+            data: formLoginToJSON(),
+            dataType: 'json',
             success: function (data) {
-                alert('Sucesso');
+                alert("Sucesso");
+            },
+            error: function (data) {
+                alert("Erro");
             }
         });
     });
