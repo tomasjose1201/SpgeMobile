@@ -46,14 +46,14 @@ var app = new Framework7({
 
 // Init/Create views
 var homeView = app.views.create('#view-home', {
- url: '/'
- });
- var catalogView = app.views.create('#view-catalog', {
- url: '/catalog/'
- });
- var settingsView = app.views.create('#view-settings', {
- url: '/settings/'
- });
+    url: '/'
+});
+var catalogView = app.views.create('#view-catalog', {
+    url: '/catalog/'
+});
+var settingsView = app.views.create('#view-settings', {
+    url: '/settings/'
+});
 
 $(document).ready(function () {
     $$('#formLogin').on('submit', function (e) {
@@ -63,13 +63,8 @@ $(document).ready(function () {
             contentType: 'application/json',
             url: "http://localhost:8080/spge/webresources/usuario/validar",
             data: formLoginToJSON(),
-            dataType: 'json',
-            success: function (data) {
-                alert("Sucesso");
-            },
-            error: function (data) {
-                alert("Erro");
-            }
+            success: function (data) { },
+            error: function (data) { }
         });
     });
 });
