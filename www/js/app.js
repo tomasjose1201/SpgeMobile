@@ -4,7 +4,7 @@ var $$ = Dom7;
 // Framework7 App main instance
 var app = new Framework7({
     root: '#app', // App root element
-    id: 'io.framework7.testapp', // App bundle ID
+    id: 'io.framework7.spgemobile', // App bundle ID
     name: 'Framework7', // App name
     theme: 'auto', // Automatic theme detection
     // App root data
@@ -12,25 +12,19 @@ var app = new Framework7({
         return {
             user: {
                 firstName: 'John',
-                lastName: 'Doe',
+                lastName: 'Doe'
             },
             // Demo products for Catalog section
-            products: [
+            eventos: [
                 {
-                    id: '1',
-                    title: 'Apple iPhone 8',
-                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi tempora similique reiciendis, error nesciunt vero, blanditiis pariatur dolor, minima sed sapiente rerum, dolorem corrupti hic modi praesentium unde saepe perspiciatis.'
+                    id: '1'
                 },
                 {
-                    id: '2',
-                    title: 'Apple iPhone 8 Plus',
-                    description: 'Velit odit autem modi saepe ratione totam minus, aperiam, labore quia provident temporibus quasi est ut aliquid blanditiis beatae suscipit odio vel! Nostrum porro sunt sint eveniet maiores, dolorem itaque!'
+                    id: '2'
                 },
                 {
-                    id: '3',
-                    title: 'Apple iPhone X',
-                    description: 'Expedita sequi perferendis quod illum pariatur aliquam, alias laboriosam! Vero blanditiis placeat, mollitia necessitatibus reprehenderit. Labore dolores amet quos, accusamus earum asperiores officiis assumenda optio architecto quia neque, quae eum.'
-                },
+                    id: '3'
+                }
             ]
         };
     },
@@ -38,24 +32,24 @@ var app = new Framework7({
     methods: {
         helloWorld: function () {
             app.dialog.alert('Hello World!');
-        },
+        }
     },
     // App routes
-    routes: routes,
+    routes: routes
 });
 
 // Init/Create views
-var homeView = app.views.create('#view-home', {
+var loginView = app.views.create('#view-login', {
     url: '/'
 });
-var catalogView = app.views.create('#view-catalog', {
-    url: '/catalog/'
+var eventosView = app.views.create('#view-eventos', {
+    url: '/eventos/'
 });
-var settingsView = app.views.create('#view-settings', {
-    url: '/settings/'
+var perfilView = app.views.create('#view-perfil', {
+    url: '/perfil/'
 });
 
-$(document).ready(function () {
+/*$(document).ready(function () {
     $$('#formLogin').on('submit', function (e) {
         e.preventDefault();
         $.ajax({
@@ -67,7 +61,7 @@ $(document).ready(function () {
             error: function (data) { }
         });
     });
-});
+});*/
 
 function formLoginToJSON() {
     return JSON.stringify({

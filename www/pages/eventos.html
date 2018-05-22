@@ -1,0 +1,40 @@
+<template>
+    <div class="page" data-name="eventos">
+        <div class="navbar">
+            <div class="navbar-inner sliding">
+                <div class="title">Eventos</div>
+            </div>
+        </div>
+        <div class="page-content">
+            <div class="list links-list">
+
+                {{#each eventos}}
+                <div class="card demo-card-header-pic">
+                    <div 
+                        style="background-image:url(http://placehold.it/1200x600);"
+                        class="card-header align-items-flex-end">
+                    </div>
+                    <div class="card-content card-content-padding">
+                        <h4>Nome do Evento {{id}}</h4>
+                        <p>Descrição do Evento {{id}}</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="/qrcode/{{id}}/" class="col button button-fill color-green">QR-CODE</a>
+                        <a href="/details/{{id}}/" class="col button button-fill color-theme-blue">Ver Mais</a>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    return {
+        data: function () {
+            return {
+                eventos: this.$root.eventos,
+            };
+        }
+    }
+    ;
+</script>
