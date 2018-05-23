@@ -3,6 +3,9 @@
         <div class="navbar">
             <div class="navbar-inner sliding">
                 <div class="title">Eventos</div>
+                <div class="right">
+                    <a class="link" href="/searchpage"><i class="f7-icons">search_strong</i></a>&nbsp;
+                </div>
             </div>
         </div>
         <div class="page-content">
@@ -15,8 +18,8 @@
                         class="card-header align-items-flex-end">
                     </div>
                     <div class="card-content card-content-padding">
-                        <h4>Nome do Evento {{id}}</h4>
-                        <p>Descrição do Evento {{id}}</p>
+                        <h4>{{nome}}</h4>
+                        <p>{{descricao}}</p>
                     </div>
                     <div class="card-footer">
                         <a href="/qrcode/{{id}}/" class="col button button-fill color-green">QR-CODE</a>
