@@ -102,19 +102,21 @@ function searchEvento(input) {
 }
 
 
-/*$(document).ready(function () {
- $$('#formLogin').on('submit', function (e) {
- e.preventDefault();
- $.ajax({
- type: 'POST',
- contentType: 'application/json',
- url: "http://localhost:8080/spge/webresources/usuario/validar",
- data: formLoginToJSON(),
- success: function (data) { },
- error: function (data) { }
- });
- });
- });*/
+$(document).ready(function () {
+    $$('#formLogin').on('submit', function (e) {
+        e.preventDefault();
+        document.getElementById("tabbar").style.visibility = "visible";
+        app.router.navigate('/eventos/');
+        /*$.ajax({
+            type: 'POST',
+            contentType: 'application/json',
+            url: "http://localhost:8080/spge/webresources/usuario/validar",
+            data: formLoginToJSON(),
+            success: function (data) { },
+            error: function (data) { }
+        });*/
+    });
+});
 
 function formLoginToJSON() {
     return JSON.stringify({

@@ -34,14 +34,14 @@
             <!-- Views/Tabs container -->
             <div class="views tabs ios-edges">
                 <!-- Tabbar for switching views-tabs -->
-                <div class="toolbar tabbar-labels toolbar-bottom-md">
+                <div class="toolbar tabbar-labels toolbar-bottom-md" style="visibility: hidden;" id="tabbar">
                     <div class="toolbar-inner">
-                        <a href="#view-login" class="tab-link tab-link-active">
+                        <!--<a href="#view-login" class="tab-link tab-link-active">
                             <i class="icon f7-icons ios-only">home</i>
                             <i class="icon f7-icons ios-only icon-ios-fill">home_fill</i>
                             <i class="icon material-icons md-only">home</i>
                             <span class="tabbar-label">Login</span>
-                        </a>
+                        </a>-->
                         <a href="#view-eventos" class="tab-link">
                             <i class="icon f7-icons ios-only">list</i>
                             <i class="icon f7-icons ios-only icon-ios-fill">list_fill</i>
@@ -68,7 +68,7 @@
                                             <div class="item-inner">
                                                 <div class="item-title item-label">Email</div>
                                                 <div class="item-input-wrap">
-                                                    <input type="text" name="email" id="email" placeholder="Digite seu email">
+                                                    <input type="text" name="email" id="email" placeholder="Digite seu email" required>
                                                 </div>
                                             </div>
                                         </li>
@@ -76,7 +76,7 @@
                                             <div class="item-inner">
                                                 <div class="item-title item-label">Senha</div>
                                                 <div class="item-input-wrap">
-                                                    <input type="password" name="senha" id="senha" placeholder="Digite sua senha">
+                                                    <input type="password" name="senha" id="senha" placeholder="Digite sua senha" required>
                                                 </div>
                                             </div>
                                         </li>
