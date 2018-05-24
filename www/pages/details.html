@@ -1,38 +1,56 @@
-<div class="page" data-name="eventos">
-    <div class="navbar">
-        <div class="navbar-inner sliding">
-            <div class="left">
-                <a href="#" class="link back">
-                    <i class="icon icon-back"></i>
-                    <span class="ios-only">Voltar</span>
-                </a>
+<template>
+    <div class="page" data-name="eventos">
+        <div class="navbar">
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="ios-only">Voltar</span>
+                    </a>
+                </div>
+                <div class="title">Detalhes</div>
             </div>
-            <div class="title">Detalhes</div>
+        </div>
+        <div class="page-content">
+            <div class="block-title"><b>{{evento.nome}}</b></div>
+            <div class="block block-strong">
+                <p>{{evento.descricao}}</p>
+            </div>
+            <div class="block">
+                <p><b>Organizador:</b> {{evento.organizador}}</p>
+            </div>
+            <div class="block block-strong">
+                <p><b>Localização:</b> {{evento.localizacao}}</p>
+                <p><b>Data/Hora Início:</b> {{evento.dataHoraInicio}}</p>
+                <p><b>Data/Hora Encerramento:</b> {{evento.dataHoraEncerramento}}</p>
+                <p><b>Encerramento das Inscrições:</b> {{evento.dataHoraEncerramentoInscricoes}}</p>
+            </div>
+            <div class="block">
+                <p><b>Tipo de Evento:</b> {{evento.tipoEvento}}</p>
+                <p><b>Número Máximo de Participantes:</b> {{evento.numMaxParticipantes}}</p>
+                <p><b>Emite Certificado?</b> {{evento.emiteCertificado}}</p>
+                <p><b>Preço:</b> {{evento.preco}}</p>
+            </div>
+            <div class="block block-strong">
+                <p><b>Website:</b> {{evento.website}}</p>
+                <p><b>Facebook:</b> {{evento.facebook}}</p>
+            </div>
         </div>
     </div>
-    <div class="page-content">
-        <div class="block-title"><b>Nome do Evento</b></div>
-        <div class="block block-strong">
-            <p>Descrição do Evento</p>
-        </div>
-        <div class="block">
-            <p><b>Organizador:</b> Nome do Organizador</p>
-        </div>
-        <div class="block block-strong">
-            <p><b>Localização:</b> Rua Teste, 123 - Bairro, Cidade</p>
-            <p><b>Data/Hora Início:</b> 12/12/2018 10:00</p>
-            <p><b>Data/Hora Encerramento:</b> 12/12/2018 15:00</p>
-            <p><b>Encerramento das Inscrições:</b> 12/12/2018 09:00</p>
-        </div>
-        <div class="block">
-            <p><b>Tipo de Evento:</b> Público</p>
-            <p><b>Número Máximo de Participantes:</b> 100</p>
-            <p><b>Emite Certificado?</b> Sim</p>
-            <p><b>Preço:</b> R$10,00</p>
-        </div>
-        <div class="block block-strong">
-            <p><b>Website:</b> www.example.com</p>
-            <p><b>Facebook:</b> www.example.com</p>
-        </div>
-    </div>
-</div>
+</template>
+<script>
+  return {
+    data: function () {
+      var eventoId = this.$route.params.id;
+      var eventoClicado;
+      this.$root.eventos.forEach(function (evento) {
+        if (evento.id === eventoId) {
+          eventoClicado = evento;
+        }
+      });
+      return {
+        evento: eventoClicado,
+      };
+    }
+  };
+</script>

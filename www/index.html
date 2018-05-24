@@ -97,12 +97,29 @@
 
                 <!-- Eventos View -->
                 <div id="view-eventos" class="view tab">
-                    
+
                 </div>
 
                 <!-- Perfil View -->
                 <div id="view-perfil" class="view tab">
-                    
+
+                </div>
+
+                <div id="itemlist" style="visibility: hidden;">
+                    <div class="card demo-card-header-pic">
+                        <div 
+                            style="background-image:url(http://placehold.it/1200x600);"
+                            class="card-header align-items-flex-end">
+                        </div>
+                        <div class="card-content card-content-padding">
+                            <h4>{{nome}}</h4>
+                            <p>{{descricao}}</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="/qrcode/{{id}}/" class="col button button-fill color-green">QR-CODE</a>
+                            <a href="/details/{{id}}/" class="col button button-fill color-theme-blue">Ver Mais</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

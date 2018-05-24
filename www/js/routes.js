@@ -13,7 +13,7 @@ routes = [
     },
     {
         path: '/details/:id/',
-        url: './pages/details.html'
+        componentUrl: './pages/details.html'
     },
     {
         path: '/qrcode/:id/',
@@ -37,7 +37,7 @@ routes = [
             pageAfterIn: function (e) {
                 app.$('form.searchbar').on('submit', function (e) {
                     e.preventDefault();
-                    tmdb_search(app.$('input[type="search"]').val());
+                    searchEvento(app.$('input[type="search"]').val());
                 });
             }
         }
