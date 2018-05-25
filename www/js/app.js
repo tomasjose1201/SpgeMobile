@@ -72,7 +72,8 @@ var app = new Framework7({
                     facebook: 'http://facebook.com/'
                 }
             ],
-            convidados: [ {
+            convidados: [ 
+                {
                     id: '1',
                     nome: 'Wesley Maffazzolli',
                     cpf: '095.161.329-44',
@@ -80,7 +81,8 @@ var app = new Framework7({
                     estudante: 'S',
                     numMatricula: 'GRR20155124',
                     curso: 'Tecnologia em Análise e Desenvolvimento de Sistemas',
-                    instituticao: 'UFPR'
+                    instituticao: 'UFPR',
+                    status: true
                 },
                 {
                     id: '2',
@@ -90,7 +92,8 @@ var app = new Framework7({
                     estudante: 'S',
                     numMatricula: 'GRR20157324',
                     curso: 'Tecnologia em Análise e Desenvolvimento de Sistemas',
-                    instituticao: 'UFPR'
+                    instituticao: 'UFPR',
+                    status: false
                 },
                 {
                     id: '3',
@@ -100,7 +103,8 @@ var app = new Framework7({
                     estudante: 'S',
                     numMatricula: 'GRR20152525',
                     curso: 'Tecnologia em Análise e Desenvolvimento de Sistemas',
-                    instituticao: 'UFPR'
+                    instituticao: 'UFPR',
+                    status: false
                 },
                 {
                     id: '4',
@@ -110,7 +114,8 @@ var app = new Framework7({
                     estudante: 'S',
                     numMatricula: 'GRR20152525',
                     curso: 'Administração',
-                    instituticao: 'PUCPR'
+                    instituticao: 'PUCPR',
+                    status: true
                 },
             ]
         };
