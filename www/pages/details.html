@@ -40,26 +40,80 @@
             </div>
         </div>
         
-        <!-- Popup -->
+        <!-- Popup [LISTA DE CONVIDADOS] -->
         <div class="popup" id="my-popup">
           <div class="view">
             <div class="page">
               <div class="navbar">
                 <div class="navbar-inner">
-                  <div class="title">Popup</div>
+                  <div class="title">Lista de Convidados</div>
                   <div class="right">
-                    <a href="#" class="link popup-close">Close</a>
+                    <a href="#" class="link popup-close">Fechar</a>
                   </div>
                 </div>
               </div>
               <div class="page-content">
                 <div class="block">
-                  <p>Popup content goes here.</p>
+                    <div class="list">
+                        <ul>
+                          <li>
+                            <a href="#" class="item-content item-link popup-open" data-popup="#popup-convidado">
+                              <div class="item-inner">
+                                <div class="item-title">Convidado 1</div>
+                              </div>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" class="item-content item-link">
+                              <div class="item-inner">
+                                <div class="item-title">Convidado 2</div>
+                              </div>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" class="item-content item-link">
+                              <div class="item-inner">
+                                <div class="item-title">Convidado 3</div>
+                              </div>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" class="item-content item-link">
+                              <div class="item-inner">
+                                <div class="item-title">Convidado 4</div>
+                              </div>
+                            </a>
+                          </li>
+                        </ul>
+                    </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        
+        <!-- Popup [DETALHES CONVIDADO] -->
+        <div class="popup" id="popup-convidado">
+          <div class="view">
+            <div class="page">
+              <div class="navbar">
+                <div class="navbar-inner">
+                  <div class="title">Convidado</div>
+                  <div class="right">
+                    <a href="#" class="link popup-close">Fechar</a>
+                  </div>
+                </div>
+              </div>
+              <div class="page-content">
+                <div class="block">
+                    <p>Detalhes do Convidado</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
     </div>
    
 </template>

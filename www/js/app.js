@@ -62,6 +62,47 @@ var app = new Framework7({
                     website: 'http://example.com/',
                     facebook: 'http://facebook.com/'
                 }
+            ],
+            convidados: [ {
+                    id: '1',
+                    nome: 'Wesley Maffazzolli',
+                    cpf: '095.161.329-44',
+                    rg: '13.103.736-8',
+                    estudante: 'S',
+                    numMatricula: 'GRR20155124',
+                    curso: 'Tecnologia em Análise e Desenvolvimento de Sistemas',
+                    instituticao: 'UFPR'
+                },
+                {
+                    id: '2',
+                    nome: 'Tomás José Alves',
+                    cpf: '593.643.799-00',
+                    rg: '30.592.877-6',
+                    estudante: 'S',
+                    numMatricula: 'GRR20157324',
+                    curso: 'Tecnologia em Análise e Desenvolvimento de Sistemas',
+                    instituticao: 'UFPR'
+                },
+                {
+                    id: '3',
+                    nome: 'Lucas Falcão da TI',
+                    cpf: '044.839.490-12',
+                    rg: '21.402.731-4',
+                    estudante: 'S',
+                    numMatricula: 'GRR20152525',
+                    curso: 'Tecnologia em Análise e Desenvolvimento de Sistemas',
+                    instituticao: 'UFPR'
+                },
+                {
+                    id: '4',
+                    nome: 'Montanha',
+                    cpf: '529.518.880-90',
+                    rg: '29.992.605-9',
+                    estudante: 'S',
+                    numMatricula: 'GRR20152525',
+                    curso: 'Administração',
+                    instituticao: 'PUCPR'
+                },
             ]
         };
     },
@@ -117,6 +158,23 @@ $(document).ready(function () {
         });*/
     });
 });
+
+var popupListaConvidados;
+$(document).ready(function () {
+    $$('#botaoListaConvidados').on('click', function (e) {
+        console.log("Estou aqui dentro do evento de clique do botão!");
+        popupListaConvidados = app.popup.create({
+            content: '<div class="popup">...</div>',
+            on: {
+              opened: function () {
+                console.log('Popup opened')
+              }
+            }
+        })
+    });
+});
+
+
 
 function formLoginToJSON() {
     return JSON.stringify({
