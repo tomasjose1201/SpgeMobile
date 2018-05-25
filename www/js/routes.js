@@ -9,11 +9,15 @@ routes = [
     },
     {
         path: '/perfil/',
-        url: './pages/perfil.html'
+        componentUrl: './pages/perfil.html'
     },
     {
         path: '/details/:id/',
         componentUrl: './pages/details.html'
+    },
+    {
+        path: '/avisos/:id/',
+        componentUrl: './pages/avisos.html'
     },
     {
         path: '/qrcode/:id/',

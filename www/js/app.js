@@ -11,7 +11,16 @@ var app = new Framework7({
     data: function () {
         return {
             user: {
-                nome: 'Tomás'
+                nome: 'Teste',
+                email: 'teste@gmail.com',
+                senha: 'teste',
+                cpf: '783.754.280-00',
+                rg: '11.129.490-3',
+                telefone: '(41)999182918',
+                endereco: 'Rua Barão do Rio Branco, 213 - Centro',
+                numMatricula: 'GRR20118817',
+                curso: 'Análise e Desenvolvimento de Sistemas',
+                instituicao: 'Universidade Federal do Paraná'
             },
             eventos: [
                 {
@@ -181,4 +190,8 @@ function formLoginToJSON() {
         "email": $('#email').val(),
         "senha": $('#senha').val()
     });
+}
+
+function logout() {
+    window.location.reload();
 }
