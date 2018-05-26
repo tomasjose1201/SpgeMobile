@@ -5,15 +5,6 @@
               type="image/png" 
               href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOUAAADcCAMAAAC4YpZBAAAAA1BMVEX///+nxBvIAAAASElEQVR4nO3BgQAAAADDoPlT3+AEVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB8A8WoAAHxScUAAAAAAElFTkSuQmCC">
         <meta charset="utf-8">
-        <!--
-        Customize this policy to fit your own app's needs. For more guidance, see:
-            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
-        Some notes:
-            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-                * Enable inline JS: add 'unsafe-inline' to default-src
-        -->
         <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap: content:">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
         <meta name="apple-mobile-web-app-capable" content="yes">
@@ -26,6 +17,26 @@
         <link rel="stylesheet" href="framework7/css/framework7.min.css">
         <link rel="stylesheet" href="css/icons.css">
         <link rel="stylesheet" href="css/app.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+        <!--===============================================================================================-->	
+        <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+        <!--===============================================================================================-->	
+        <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="css/util.css">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <!--===============================================================================================-->
         <!-- JQuery -->
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     </head>
@@ -58,38 +69,33 @@
                 </div>
                 <!-- Your main view/tab, should have "view-main" class. It also has "tab-active" class -->
                 <div id="view-login" class="view view-main tab tab-active">
-                    <div class="page" data-name="home">
-                        <div class="page-content login-screen-content">
-                            <div class="login-screen-title">Login</div>
-                            <form id="formLogin" method="POST">
-                                <div class="list">
-                                    <ul>
-                                        <li class="item-content item-input">
-                                            <div class="item-inner">
-                                                <div class="item-title item-label">Email</div>
-                                                <div class="item-input-wrap">
-                                                    <input type="email" name="email" id="email" placeholder="Digite seu email" required>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="item-content item-input">
-                                            <div class="item-inner">
-                                                <div class="item-title item-label">Senha</div>
-                                                <div class="item-input-wrap">
-                                                    <input type="password" name="senha" id="senha" placeholder="Digite sua senha" required>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="list">
-                                    <ul>
-                                        <li>
-                                            <button type="submit" class="button">Login</button>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </form>    
+                    <div class="limiter">
+                        <div class="container-login100">
+                            <div class="wrap-login100 p-l-25 p-r-25 p-t-65 p-b-50">
+                                <form class="login100-form validate-form" id="formLogin" method="POST">
+                                    <span class="login100-form-title p-b-33">
+                                        SPGE Mobile
+                                    </span>
+
+                                    <div class="wrap-input100">
+                                        <input class="input100" type="email" name="email" placeholder="Email" required>
+                                        <span class="focus-input100-1"></span>
+                                        <span class="focus-input100-2"></span>
+                                    </div>
+
+                                    <div class="wrap-input100 rs1">
+                                        <input class="input100" type="password" name="senha" placeholder="Senha" required>
+                                        <span class="focus-input100-1"></span>
+                                        <span class="focus-input100-2"></span>
+                                    </div>
+
+                                    <div class="container-login100-form-btn m-t-20">
+                                        <button type="submit" class="col button button-fill color-theme-blue">
+                                            Login
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -116,8 +122,8 @@
                             <p>{{descricao}}</p>
                         </div>
                         <div class="card-footer">
-                            <a href="/qrcode/{{id}}/" class="col button button-fill color-green">QR-CODE</a>
-                            <a href="/details/{{id}}/" class="col button button-fill color-theme-blue">Ver Mais</a>
+                            <a href="/qrcode/{{id}}/"><button class="col button color-green">QR-CODE</button></a>
+                            <a href="/details/{{id}}/"><button class="col button color-theme-blue">Ver Mais</button></a>
                         </div>
                     </div>
                 </div>
@@ -132,6 +138,22 @@
         <script src="js/routes.js"></script>
         <!-- Your custom app scripts -->
         <script src="js/app.js"></script>
+        <!--===============================================================================================-->
+        <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="vendor/animsition/js/animsition.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="vendor/bootstrap/js/popper.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="vendor/select2/select2.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="vendor/daterangepicker/moment.min.js"></script>
+        <script src="vendor/daterangepicker/daterangepicker.js"></script>
+        <!--===============================================================================================-->
+        <script src="vendor/countdowntime/countdowntime.js"></script>
+        <!--===============================================================================================-->
+        <script src="js/main.js"></script>
 
     </body>
 </html>
