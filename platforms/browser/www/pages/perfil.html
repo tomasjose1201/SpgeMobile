@@ -1,0 +1,141 @@
+<template>
+    <div class="page" data-name="perfil">
+        <div class="navbar">
+            <div class="navbar-inner sliding">
+                <div class="right">
+                    <button class="button" onclick="logout()">Logout</button>
+                </div>
+                <div class="title">Perfil</div>
+            </div>
+        </div>
+        <div class="page-content">
+            <div class="block-title"><b>Dados Cadastrais</b></div>
+            <div class="list no-hairlines-md">
+                <ul>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Nome</div>
+                                <div class="item-input-wrap">
+                                    <input type="text" value="{{perfil.nome}}" placeholder="Nome Exemplo"/>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Email</div>
+                                <div class="item-input-wrap">
+                                    <input type="email" value="{{perfil.email}}" placeholder="email@example.com"/>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Senha</div>
+                                <div class="item-input-wrap">
+                                    <input type="password" value="{{perfil.senha}}" placeholder="Senha"/>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">CPF</div>
+                                <div class="item-input-wrap">
+                                    <input type="text" value="{{perfil.cpf}}" placeholder="999.999.999-99" disabled/>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">RG</div>
+                                <div class="item-input-wrap">
+                                    <input type="text" value="{{perfil.rg}}" placeholder="99.999.999-9"/>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Telefone</div>
+                                <div class="item-input-wrap">
+                                    <input type="text" value="{{perfil.telefone}}" placeholder="(99)999999999"/>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Endereço</div>
+                                <div class="item-input-wrap">
+                                    <input type="text" value="{{perfil.endereco}}" placeholder="Ex.: Rua Exemplo, 1 - Bairro, Cidade"/>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <label class="item-checkbox item-content">
+                            <input type="checkbox" name="checkbox" checked/>
+                            <i class="icon icon-checkbox"></i>
+                            <div class="item-inner">
+                                <div class="item-title">Sou Estudante</div>
+                            </div>
+                        </label>
+                    </li>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Nº de Matrícula</div>
+                                <div class="item-input-wrap">
+                                    <input type="text" value="{{perfil.numMatricula}}" placeholder="Ex.: GRR20009999"/>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Curso</div>
+                                <div class="item-input-wrap">
+                                    <input type="text" value="{{perfil.curso}}" placeholder="Ex.: Medicina"/>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Instituição</div>
+                                <div class="item-input-wrap">
+                                    <input type="text" value="{{perfil.instituicao}}" placeholder="Ex.: UFPR"/>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <br><button class="button">Salvar</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    return {
+        data: function () {
+            return {
+                perfil: this.$root.user,
+            };
+        }
+    }
+    ;
+</script>

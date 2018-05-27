@@ -1,86 +1,58 @@
 routes = [
-  {
-    path: '/',
-    url: './index.html',
-  },
-  {
-    path: '/about/',
-    url: './pages/about.html',
-  },
-  {
-    path: '/catalog/',
-    componentUrl: './pages/catalog.html',
-  },
-  {
-    path: '/product/:id/',
-    componentUrl: './pages/product.html',
-  },
-  {
-    path: '/settings/',
-    url: './pages/settings.html',
-  },
-  // Page Loaders & Router
-  {
-    path: '/page-loader-template7/:user/:userId/:posts/:postId/',
-    templateUrl: './pages/page-loader-template7.html',
-  },
-  {
-    path: '/page-loader-component/:user/:userId/:posts/:postId/',
-    componentUrl: './pages/page-loader-component.html',
-  },
-  {
-    path: '/request-and-load/user/:userId/',
-    async: function (routeTo, routeFrom, resolve, reject) {
-      // Router instance
-      var router = this;
-
-      // App instance
-      var app = router.app;
-
-      // Show Preloader
-      app.preloader.show();
-
-      // User ID from request
-      var userId = routeTo.params.userId;
-
-      // Simulate Ajax Request
-      setTimeout(function () {
-        // We got user data from request
-        var user = {
-          firstName: 'Vladimir',
-          lastName: 'Kharlampidi',
-          about: 'Hello, i am creator of Framework7! Hope you like it!',
-          links: [
-            {
-              title: 'Framework7 Website',
-              url: 'http://framework7.io',
-            },
-            {
-              title: 'Framework7 Forum',
-              url: 'http://forum.framework7.io',
-            },
-          ]
-        };
-        // Hide Preloader
-        app.preloader.hide();
-
-        // Resolve route to load page
-        resolve(
-          {
-            componentUrl: './pages/request-and-load.html',
-          },
-          {
-            context: {
-              user: user,
-            }
-          }
-        );
-      }, 1000);
+    {
+        path: '/',
+        url: './index.html'
     },
-  },
-  // Default route (404 page). MUST BE THE LAST
-  {
-    path: '(.*)',
-    url: './pages/404.html',
-  },
+    {
+        path: '/eventos/',
+        componentUrl: './pages/eventos.html'
+    },
+    {
+        path: '/perfil/',
+        componentUrl: './pages/perfil.html'
+    },
+    {
+        path: '/details/:id/',
+        componentUrl: './pages/details.html'
+    },
+    {
+        path: '/avisos/:id/',
+        componentUrl: './pages/avisos.html'
+    },
+    {
+        path: '/convidado/:id/',
+        componentUrl: './pages/convidado.html'
+    },
+    {
+        path: '/qrcode/:id/',
+        componentUrl: './pages/qrcode.html'
+    },
+    {
+        path: "/search/",
+        url: "./pages/search.html",
+        on: {
+            pageInit: function (e) {
+                searchbar = app.searchbar.create({
+                    el: 'form.searchbar',
+                    enabled: true,
+                    on: {
+                        clear: function (e) {
+                            app.$('#searchresults').empty();
+                        }
+                    }
+                });
+            },
+            pageAfterIn: function (e) {
+                app.$('form.searchbar').on('submit', function (e) {
+                    e.preventDefault();
+                    searchEvento(app.$('input[type="search"]').val());
+                });
+            }
+        }
+    },
+    // Default route (404 page). MUST BE THE LAST
+    {
+        path: '(.*)',
+        url: './pages/404.html'
+    }
 ];

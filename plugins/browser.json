@@ -9,6 +9,9 @@
   "installed_plugins": {
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.coolappz.spgemobile"
+    },
+    "phonegap-plugin-barcodescanner": {
+      "PACKAGE_NAME": "com.coolappz.spgemobile"
     }
   },
   "dependent_plugins": {}
