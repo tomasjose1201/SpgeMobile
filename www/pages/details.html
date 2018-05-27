@@ -36,6 +36,8 @@
                 <p><b>Facebook:</b> {{evento.facebook}}</p>
             </div>
             <div class="block block-strong">
+                <a href="/convidado/{{evento.id}}/" class="col button button-fill color-green">Cadastrar Convidado</a>
+                <br>
                 <a href="#" class="col button button-raised button-fill popup-open" data-popup="#my-popup">Ver lista de convidados</a>
                 <br>
                 <a href="/avisos/{{evento.id}}/" class="col button button-fill color-red">Avisos</a>
@@ -70,29 +72,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Popup [DETALHES CONVIDADO] 
-        <div class="popup" id="popup-convidado">
-          <div class="view">
-            <div class="page">
-              <div class="navbar">
-                <div class="navbar-inner">
-                  <div class="title">Convidado</div>
-                  <div class="right">
-                    <a href="#" class="link popup-close">Fechar</a>
-                  </div>
-                </div>
-              </div>
-              <div class="page-content">
-                <div class="block">
-                    <p>Detalhes do Convidado</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>-->
-
-
     </div>
 
 </template>
