@@ -72,7 +72,7 @@ var app = new Framework7({
                     facebook: 'http://facebook.com/'
                 }
             ],
-            convidados: [ 
+            convidados: [
                 {
                     id: '1',
                     nome: 'Wesley Maffazzolli',
@@ -156,20 +156,25 @@ function searchEvento(input) {
     }
 }
 
-
-$(document).ready(function () {
-    $$('#formLogin').on('submit', function (e) {
-        e.preventDefault();
-        document.getElementById("tabbar").style.visibility = "visible";
-        app.router.navigate('/eventos/');
-        /*$.ajax({
-            type: 'POST',
-            contentType: 'application/json',
-            url: "http://localhost:8080/spge/webresources/usuario/validar",
-            data: formLoginToJSON(),
-            success: function (data) { },
-            error: function (data) { }
-        });*/
+$$('#formLogin').on('submit', function (e) {
+    e.preventDefault();
+    /*document.getElementById("tabbar").style.visibility = "visible";
+     app.router.navigate('/eventos/');*/
+    $.ajax({
+        url: "http://192.168.0.182:8080/spge/webresources/usuario/validar/",
+        type: 'GET',
+        data: {
+            idEvento: $('#email').val(),
+            idConvidado: $('#senha').val()
+        },
+        contentType: 'application/json',
+        dataType: 'jsonp',
+        success: function (data) {
+            alert("Sucesso");
+        },
+        error: function (request, textStatus, errorThrown) {
+            alert(request.status + ', Error: ' + textStatus);
+        }
     });
 });
 
@@ -180,9 +185,9 @@ $(document).ready(function () {
         popupListaConvidados = app.popup.create({
             content: '<div class="popup">...</div>',
             on: {
-              opened: function () {
-                console.log('Popup opened')
-              }
+                opened: function () {
+                    console.log('Popup opened')
+                }
             }
         })
     });
