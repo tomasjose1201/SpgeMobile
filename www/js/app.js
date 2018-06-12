@@ -161,19 +161,19 @@ $$('#formLogin').on('submit', function (e) {
     /*document.getElementById("tabbar").style.visibility = "visible";
      app.router.navigate('/eventos/');*/
     $.ajax({
-        url: "http://192.168.0.182:8080/spge/webresources/usuario/validar/",
+        url: "http://192.168.0.182:8080/spge/webresources/usuario/validar",
         type: 'GET',
         data: {
-            idEvento: $('#email').val(),
-            idConvidado: $('#senha').val()
+            email: $('#email').val(),
+            senha: $('#senha').val()
         },
         contentType: 'application/json',
         dataType: 'jsonp',
         success: function (data) {
-            alert("Sucesso");
+            alert(JSON.stringify(data));
         },
         error: function (request, textStatus, errorThrown) {
-            alert(request.status + ', Error: ' + textStatus);
+            alert(errorThrown + ' Status: ' + textStatus);
         }
     });
 });
