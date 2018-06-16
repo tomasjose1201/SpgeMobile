@@ -5,23 +5,12 @@ var $$ = Dom7;
 var app = new Framework7({
     root: '#app', // App root element
     id: 'io.framework7.spgemobile', // App bundle ID
-    name: 'Framework7', // App name
+    name: 'SPGE Mobile', // App name
     theme: 'auto', // Automatic theme detection
     // App root data
     data: function () {
         return {
-            user: {
-                nome: 'Teste',
-                email: 'teste@gmail.com',
-                senha: 'teste',
-                cpf: '783.754.280-00',
-                rg: '11.129.490-3',
-                telefone: '(41)999182918',
-                endereco: 'Rua Barão do Rio Branco, 213 - Centro',
-                numMatricula: 'GRR20118817',
-                curso: 'Análise e Desenvolvimento de Sistemas',
-                instituicao: 'Universidade Federal do Paraná'
-            },
+            user: {},
             eventos: [
                 {
                     id: '1',
@@ -134,32 +123,9 @@ var app = new Framework7({
 var loginView = app.views.create('#view-login', {
     url: '/'
 });
-var eventosView = app.views.create('#view-eventos', {
-    url: '/eventos/'
-});
-var perfilView = app.views.create('#view-perfil', {
-    url: '/perfil/'
-});
-
-var resultadoPesquisa = app.t7.compile(app.$('#itemlist').html());
-
-function searchEvento(input) {
-    var encontrou = false;
-    app.data.eventos.forEach(function (evento) {
-        if (evento.nome.toUpperCase().includes(input.toUpperCase())) {
-            app.$("#searchresults").empty().html(resultadoPesquisa(evento));
-            encontrou = true;
-        }
-    });
-    if (!encontrou) {
-        app.dialog.alert("Sem resultados.");
-    }
-}
 
 $$('#formLogin').on('submit', function (e) {
     e.preventDefault();
-    /*document.getElementById("tabbar").style.visibility = "visible";
-     app.router.navigate('/eventos/');*/
     $.ajax({
         url: "http://192.168.0.182:8080/spge/webresources/usuario/validar",
         type: 'GET',
@@ -170,38 +136,57 @@ $$('#formLogin').on('submit', function (e) {
         contentType: 'application/json',
         dataType: 'jsonp',
         success: function (data) {
-            alert(JSON.stringify(data));
+            if (data === null) {
+                app.dialog.alert("Os dados inseridos não foram encontrados.");
+            } else {
+                app.data.user = JSON.parse(JSON.stringify(data));
+                
+                var eventosView = app.views.create('#view-eventos', {
+                    url: '/eventos/'
+                });
+                var perfilView = app.views.create('#view-perfil', {
+                    url: '/perfil/'
+                });
+
+                var resultadoPesquisa = app.t7.compile(app.$('#itemlist').html());
+
+                function searchEvento(input) {
+                    var encontrou = false;
+                    app.data.eventos.forEach(function (evento) {
+                        if (evento.nome.toUpperCase().includes(input.toUpperCase())) {
+                            app.$("#searchresults").empty().html(resultadoPesquisa(evento));
+                            encontrou = true;
+                        }
+                    });
+                    if (!encontrou) {
+                        app.dialog.alert("Sem resultados.");
+                    }
+                }
+
+                var popupListaConvidados;
+                $(document).ready(function () {
+                    $$('#botaoListaConvidados').on('click', function (e) {
+                        console.log("Estou aqui dentro do evento de clique do botão!");
+                        popupListaConvidados = app.popup.create({
+                            content: '<div class="popup">...</div>',
+                            on: {
+                                opened: function () {
+                                    console.log('Popup opened')
+                                }
+                            }
+                        })
+                    });
+                });
+
+                function logout() {
+                    window.location.reload();
+                }
+                document.getElementById("tabbar").style.visibility = "visible";
+                app.router.navigate('/eventos/');
+            }
         },
         error: function (request, textStatus, errorThrown) {
             alert(errorThrown + ' Status: ' + textStatus);
         }
     });
 });
-
-var popupListaConvidados;
-$(document).ready(function () {
-    $$('#botaoListaConvidados').on('click', function (e) {
-        console.log("Estou aqui dentro do evento de clique do botão!");
-        popupListaConvidados = app.popup.create({
-            content: '<div class="popup">...</div>',
-            on: {
-                opened: function () {
-                    console.log('Popup opened')
-                }
-            }
-        })
-    });
-});
-
-
-
-function formLoginToJSON() {
-    return JSON.stringify({
-        "email": $('#email').val(),
-        "senha": $('#senha').val()
-    });
-}
-
-function logout() {
-    window.location.reload();
-}

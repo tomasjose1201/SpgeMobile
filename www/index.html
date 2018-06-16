@@ -123,7 +123,7 @@
                 </div>
             </div>
         </div>
-        
+
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
         <!-- Cordova -->
         <script src="cordova.js"></script>
@@ -151,43 +151,43 @@
         <script src="js/main.js"></script>
         <!-- QRCODE -->
         <script>
-            function scan()
-            {
-                cordova.plugins.barcodeScanner.scan(
-                    function (result) {
-                        if(!result.cancelled)
-                        {
-                            if(result.format == "QR_CODE")
-                            {
-                                navigator.notification.prompt("Please enter name of data",  function(input){
-                                    var name = input.input1;
-                                    var value = result.text;
+function scan()
+{
+    cordova.plugins.barcodeScanner.scan(
+            function (result) {
+                if (!result.cancelled)
+                {
+                    if (result.format == "QR_CODE")
+                    {
+                        navigator.notification.prompt("Please enter name of data", function (input) {
+                            var name = input.input1;
+                            var value = result.text;
 
-                                    var data = localStorage.getItem("LocalData");
-                                    console.log(data);
-                                    data = JSON.parse(data);
-                                    data[data.length] = [name, value];
+                            var data = localStorage.getItem("LocalData");
+                            console.log(data);
+                            data = JSON.parse(data);
+                            data[data.length] = [name, value];
 
-                                    localStorage.setItem("LocalData", JSON.stringify(data));
+                            localStorage.setItem("LocalData", JSON.stringify(data));
 
-                                    alert("Done");
-                                });
-                            }
-                        }
-                    },
-                    function (error) {
-                        alert("Scanning failed: " + error);
+                            alert("Done");
+                        });
                     }
-               );
+                }
+            },
+            function (error) {
+                alert("Scanning failed: " + error);
             }
+    );
+}
 
-            //initialize
-            if(localStorage.getItem("LocalData") == null)
-            {
-                var data = [];
-                data = JSON.stringify(data);
-                localStorage.setItem("LocalData", data);
-            }
+//initialize
+if (localStorage.getItem("LocalData") == null)
+{
+    var data = [];
+    data = JSON.stringify(data);
+    localStorage.setItem("LocalData", data);
+}
         </script>
 
     </body>
