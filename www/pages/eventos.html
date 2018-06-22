@@ -18,12 +18,12 @@
                         class="card-header align-items-flex-end">
                     </div>
                     <div class="card-content card-content-padding">
-                        <h4>{{nome}}</h4>
-                        <p>{{descricao}}</p>
+                        <h4>{{evento.nome}}</h4>
+                        <p>{{evento.descricao}}</p>
                     </div>
                     <div class="card-footer">
-                        <a href="/qrcode/{{id}}/"><button class="col button color-green">QR-CODE</button></a>
-                        <a href="/details/{{id}}/"><button class="col button color-theme-blue">Ver Mais</button></a>
+                        <a href="/qrcode/{{evento.idEvento}}/"><button class="col button color-green">QR-CODE</button></a>
+                        <a href="/details/{{evento.idEvento}}/"><button class="col button color-theme-blue">Ver Mais</button></a>
                     </div>
                 </div>
                 {{/each}}
@@ -35,7 +35,7 @@
     return {
         data: function () {
             return {
-                eventos: this.$root.eventos,
+                eventos: app.data.eventos,
             };
         }
     }

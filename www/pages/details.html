@@ -17,7 +17,7 @@
                 <p>{{evento.descricao}}</p>
             </div>
             <div class="block">
-                <p><b>Organizador:</b> {{evento.organizador}}</p>
+                <p><b>Organizador:</b> {{evento.idUsuario}}</p>
             </div>
             <div class="block block-strong">
                 <p><b>Localização:</b> {{evento.localizacao}}</p>
@@ -80,9 +80,10 @@
         data: function () {
             var eventoId = this.$route.params.id;
             var eventoClicado;
-            this.$root.eventos.forEach(function (evento) {
-                if (evento.id === eventoId) {
-                    eventoClicado = evento;
+            app.data.eventos.forEach(function (evento) {
+                if (evento.evento.idEvento == eventoId) {
+                    eventoClicado = evento.evento;
+                    eventoClicado.dataHoraInicio = new Date(eventoClicado.dataHoraInicio);
                 }
             });
             return {
