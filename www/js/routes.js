@@ -24,6 +24,10 @@ routes = [
         componentUrl: './pages/convidado.html'
     },
     {
+        path: '/listaConv/:id/',
+        componentUrl: './pages/listaConvidados.html'
+    },
+    {
         path: '/qrcode/:id/',
         componentUrl: './pages/qrcode.html'
     },

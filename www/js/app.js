@@ -13,60 +13,11 @@ var app = new Framework7({
             BASE_URL: 'http://192.168.0.28:8080/spge/webresources/usuario/',
             user: {},
             eventos: {},
-            convidados: [
-                {
-                    id: '1',
-                    nome: 'Wesley Maffazzolli',
-                    cpf: '095.161.329-44',
-                    rg: '13.103.736-8',
-                    estudante: 'S',
-                    numMatricula: 'GRR20155124',
-                    curso: 'Tecnologia em Análise e Desenvolvimento de Sistemas',
-                    instituticao: 'UFPR',
-                    status: true
-                },
-                {
-                    id: '2',
-                    nome: 'Tomás José Alves',
-                    cpf: '593.643.799-00',
-                    rg: '30.592.877-6',
-                    estudante: 'S',
-                    numMatricula: 'GRR20157324',
-                    curso: 'Tecnologia em Análise e Desenvolvimento de Sistemas',
-                    instituticao: 'UFPR',
-                    status: false
-                },
-                {
-                    id: '3',
-                    nome: 'Lucas Falcão da TI',
-                    cpf: '044.839.490-12',
-                    rg: '21.402.731-4',
-                    estudante: 'S',
-                    numMatricula: 'GRR20152525',
-                    curso: 'Tecnologia em Análise e Desenvolvimento de Sistemas',
-                    instituticao: 'UFPR',
-                    status: false
-                },
-                {
-                    id: '4',
-                    nome: 'Montanha',
-                    cpf: '529.518.880-90',
-                    rg: '29.992.605-9',
-                    estudante: 'S',
-                    numMatricula: 'GRR20152525',
-                    curso: 'Administração',
-                    instituticao: 'PUCPR',
-                    status: true
-                },
-            ]
+            convidados: {}
         };
     },
     // App root methods
-    methods: {
-        helloWorld: function () {
-            app.dialog.alert('Hello World!');
-        }
-    },
+    methods: {},
     // App routes
     routes: routes
 });
@@ -112,10 +63,25 @@ $$('#formLogin').on('submit', function (e) {
                             if (evento.evento.idUsuario === app.data.user.idUsuario) {
                                 evento.evento.idUsuario = true;
                             } else {
-                                //ajax
-                                evento.evento.idUsuario = false;
+                                //ajax para buscar nome do organizador
+                                $.ajax({
+                                    url: app.data.BASE_URL + "nomeOrganizador",
+                                    type: 'GET',
+                                    data: {
+                                        idUsuario: evento.evento.idUsuario
+                                    },
+                                    contentType: 'application/json',
+                                    dataType: 'jsonp',
+                                    success: function (data) {
+                                        evento.evento.idUsuario = JSON.parse(JSON.stringify(data));
+                                    },
+                                    error: function (request, textStatus, errorThrown) {
+                                        alert(errorThrown + ' Status: ' + textStatus);
+                                    }
+                                });
                             }
                         });
+
                         var eventosView = app.views.create('#view-eventos', {
                             url: '/eventos/'
                         });
@@ -153,20 +119,65 @@ function searchEvento(input) {
     }
 }
 
-var popupListaConvidados;
-$(document).ready(function () {
-    $$('#botaoListaConvidados').on('click', function (e) {
-        console.log("Estou aqui dentro do evento de clique do botão!");
-        popupListaConvidados = app.popup.create({
-            content: '<div class="popup">...</div>',
-            on: {
-                opened: function () {
-                    console.log('Popup opened')
+function listaConvidados(idEvento) {
+    $.ajax({
+        url: app.data.BASE_URL + "convidados",
+        type: 'GET',
+        data: {
+            idEvento: idEvento
+        },
+        contentType: 'application/json',
+        dataType: 'jsonp',
+        success: function (data) {
+            app.data.convidados = JSON.parse(JSON.stringify(data));
+            app.data.convidados.forEach(function (convidado) {
+                if (convidado.statusPresenca === 'P') {
+                    convidado.statusPresenca = true;
+                } else {
+                    convidado.statusPresenca = false;
                 }
-            }
-        })
+                $.ajax({
+                    url: app.data.BASE_URL + "convidadoCpf",
+                    type: 'GET',
+                    data: {
+                        idUsuario: convidado.convidado.idUsuario
+                    },
+                    contentType: 'application/json',
+                    dataType: 'jsonp',
+                    success: function (data) {
+                        convidado.convidado.email = JSON.parse(JSON.stringify(data));
+                    },
+                    error: function (request, textStatus, errorThrown) {
+                        alert(errorThrown + ' Status: ' + textStatus);
+                    }
+                });
+            });
+        },
+        error: function (request, textStatus, errorThrown) {
+            alert(errorThrown + ' Status: ' + textStatus);
+        }
     });
-});
+}
+
+function presencaConvidado(idConvidado, idEvento) {
+    $.ajax({
+        url: app.data.BASE_URL + "presencaConvidado",
+        type: 'GET',
+        data: {
+            idConvidado: idConvidado,
+            idEvento: idEvento,
+            statusPresenca: 'P'
+        },
+        contentType: 'application/json',
+        dataType: 'jsonp',
+        success: function (data) {
+            listaConvidados(idEvento)
+        },
+        error: function (request, textStatus, errorThrown) {
+            alert(errorThrown + ' Status: ' + textStatus);
+        }
+    });
+}
 
 function logout() {
     window.location.reload();

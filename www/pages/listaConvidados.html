@@ -1,0 +1,40 @@
+<template>
+    <div class="page" data-name="listaConvidados">
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="ios-only">Voltar</span>
+                    </a>
+                </div>
+                <div class="title">Lista de Convidados</div>
+            </div>
+        </div>
+        <div class="page-content">
+            {{#each convidados}}
+            <div class="block">
+                <p><b>{{convidado.nome}} ({{convidado.email}})</b></p>
+                <p> {{#if statusPresenca}}
+                    Status: Presente 
+                    {{else}}
+                    Status: Ausente 
+                    <br>
+                    <a class="link back" onClick="presencaConvidado({{convidado.idConvidado}}, {{evento.idEvento}})" style="color:green"> Confirmar Presença</a>
+                    {{/if}}
+                </p>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</template>
+<script>
+    return {
+        data: function () {
+            return {
+                convidados: app.data.convidados
+            };
+        }
+    }
+    ;
+</script>

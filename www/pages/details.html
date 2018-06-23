@@ -35,42 +35,15 @@
                 <p><b>Website:</b> {{evento.website}}</p>
                 <p><b>Facebook:</b> {{evento.facebook}}</p>
             </div>
-            <div class="block block-strong">
-                <a href="/convidado/{{evento.id}}/" class="col button button-fill color-green">Cadastrar Convidado</a>
+            {{#if usuarioOrg}}
+            <div class="block">
+                <a href="/convidado/{{evento.idEvento}}/" class="col button button-fill color-green">Cadastrar Convidado</a>
                 <br>
-                <a href="#" class="col button button-raised button-fill popup-open" data-popup="#my-popup">Ver lista de convidados</a>
+                <a href="/listaConv/{{evento.idEvento}}/" class="ccol button button-fill">Ver lista de convidados</a>
                 <br>
-                <a href="/avisos/{{evento.id}}/" class="col button button-fill color-red">Avisos</a>
+                <a href="/avisos/{{evento.idEvento}}/" class="col button button-fill color-red">Avisos</a>
             </div>
-        </div>
-
-        <!-- Popup [LISTA DE CONVIDADOS] -->
-        <div class="popup" id="my-popup">
-            <div class="view">
-                <div class="page" data-name="convidados">
-                    <div class="navbar">
-                        <div class="navbar-inner">
-                            <div class="title">Lista de Convidados</div>
-                            <div class="right">
-                                <a href="#" class="link popup-close">Fechar</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="page-content">
-                        {{#each convidados}}
-                        <div class="block">
-                            <p><b>{{nome}} ({{cpf}})</b></p>
-                            <p> {{#if status}}
-                                    Status: Presente 
-                                {{else}}
-                                    Status: Ausente <a href="#" style="color:green"> Confirmar Presença</a>
-                                {{/if}}
-                            </p>
-                        </div>
-                        {{/each}}
-                    </div>
-                </div>
-            </div>
+            {{/if}}
         </div>
     </div>
 
@@ -81,20 +54,24 @@
             var eventoId = this.$route.params.id;
             var eventoClicado;
             var nomeOrganizador;
+            var usuarioOrganizador;
             app.data.eventos.forEach(function (evento) {
                 if (evento.evento.idEvento == eventoId) {
                     eventoClicado = evento.evento;
                 }
-                if(evento.evento.idUsuario) {
+                if (evento.evento.idUsuario == true) {
                     nomeOrganizador = app.data.user.nome;
+                    usuarioOrganizador = true;
                 } else {
                     nomeOrganizador = evento.evento.idUsuario;
+                    usuarioOrganizador = false;
                 }
             });
+            listaConvidados(eventoId);
             return {
                 evento: eventoClicado,
                 organizador: nomeOrganizador,
-                convidados: this.$root.convidados
+                usuarioOrg: usuarioOrganizador
             };
         }
     }
