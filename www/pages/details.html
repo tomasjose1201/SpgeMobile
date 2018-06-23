@@ -17,10 +17,10 @@
                 <p>{{evento.descricao}}</p>
             </div>
             <div class="block">
-                <p><b>Organizador:</b> {{evento.idUsuario}}</p>
+                <p><b>Organizador:</b> {{organizador}}</p>
             </div>
             <div class="block block-strong">
-                <p><b>Localização:</b> {{evento.localizacao}}</p>
+                <p><b>Localização:</b> {{evento.endereco}}</p>
                 <p><b>Data/Hora Início:</b> {{evento.dataHoraInicio}}</p>
                 <p><b>Data/Hora Encerramento:</b> {{evento.dataHoraEncerramento}}</p>
                 <p><b>Encerramento das Inscrições:</b> {{evento.dataHoraEncerramentoInscricoes}}</p>
@@ -29,7 +29,7 @@
                 <p><b>Tipo de Evento:</b> {{evento.tipoEvento}}</p>
                 <p><b>Número Máximo de Participantes:</b> {{evento.numMaxParticipantes}}</p>
                 <p><b>Emite Certificado?</b> {{evento.emiteCertificado}}</p>
-                <p><b>Preço:</b> {{evento.preco}}</p>
+                <p><b>Preço:</b> R${{evento.preco}}</p>
             </div>
             <div class="block block-strong">
                 <p><b>Website:</b> {{evento.website}}</p>
@@ -80,14 +80,20 @@
         data: function () {
             var eventoId = this.$route.params.id;
             var eventoClicado;
+            var nomeOrganizador;
             app.data.eventos.forEach(function (evento) {
                 if (evento.evento.idEvento == eventoId) {
                     eventoClicado = evento.evento;
-                    eventoClicado.dataHoraInicio = new Date(eventoClicado.dataHoraInicio);
+                }
+                if(evento.evento.idUsuario) {
+                    nomeOrganizador = app.data.user.nome;
+                } else {
+                    nomeOrganizador = evento.evento.idUsuario;
                 }
             });
             return {
                 evento: eventoClicado,
+                organizador: nomeOrganizador,
                 convidados: this.$root.convidados
             };
         }

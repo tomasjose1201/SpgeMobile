@@ -10,7 +10,7 @@ var app = new Framework7({
     // App root data
     data: function () {
         return {
-            BASE_URL: 'http://192.168.0.12:8080/spge/webresources/usuario/',
+            BASE_URL: 'http://192.168.0.28:8080/spge/webresources/usuario/',
             user: {},
             eventos: {},
             convidados: [
@@ -108,7 +108,14 @@ $$('#formLogin').on('submit', function (e) {
                     dataType: 'jsonp',
                     success: function (data) {
                         app.data.eventos = JSON.parse(JSON.stringify(data));
-
+                        app.data.eventos.forEach(function (evento) {
+                            if (evento.evento.idUsuario === app.data.user.idUsuario) {
+                                evento.evento.idUsuario = true;
+                            } else {
+                                //ajax
+                                evento.evento.idUsuario = false;
+                            }
+                        });
                         var eventosView = app.views.create('#view-eventos', {
                             url: '/eventos/'
                         });
