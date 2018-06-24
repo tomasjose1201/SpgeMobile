@@ -21,7 +21,12 @@ routes = [
     },
     {
         path: '/convidado/:id/',
-        componentUrl: './pages/convidado.html'
+        componentUrl: './pages/convidado.html',
+        on: {
+            pageInit: function (event, page) {
+                $('#cpfConvidado').mask("999.999.999-99");
+            }
+        }
     },
     {
         path: '/listaConv/:id/',

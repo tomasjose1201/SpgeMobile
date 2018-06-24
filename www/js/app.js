@@ -179,6 +179,51 @@ function presencaConvidado(idConvidado, idEvento) {
     });
 }
 
+function cadastraAviso(idEvento) {
+    if ($('#assuntoAviso').val() == '' || $('#descrAviso').val() == '') {
+        app.dialog.alert("ATENÇÃO: o aviso não foi cadastrado pois estava incompleto.");
+    } else {
+        $.ajax({
+            url: app.data.BASE_URL + "aviso",
+            type: 'GET',
+            data: {
+                idEvento: idEvento,
+                assunto: $('#assuntoAviso').val(),
+                descricao: $('#descrAviso').val()
+            },
+            contentType: 'application/json',
+            dataType: 'jsonp',
+            success: function (data) {
+                app.dialog.alert("Aviso cadastrado com sucesso!");
+            },
+            error: function (request, textStatus, errorThrown) {
+                alert(errorThrown + ' Status: ' + textStatus);
+            }
+        });
+    }
+}
+
+function cadastraConvidado(idEvento) {
+    $.ajax({
+        url: app.data.BASE_URL + "novoConvidado",
+        type: 'GET',
+        data: {
+            idEvento: idEvento,
+            nome: $('#nomeConvidado').val(),
+            email: $('#emailConvidado').val(),
+            cpf: $('#cpfConvidado').val()
+        },
+        contentType: 'application/json',
+        dataType: 'jsonp',
+        success: function (data) {
+            app.dialog.alert("Convidado cadastrado com sucesso!");
+        },
+        error: function (request, textStatus, errorThrown) {
+            alert(errorThrown + ' Status: ' + textStatus);
+        }
+    });
+}
+
 function logout() {
     window.location.reload();
 }
