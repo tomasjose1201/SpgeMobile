@@ -13,7 +13,8 @@ var app = new Framework7({
             BASE_URL: 'http://192.168.0.28:8080/spge/webresources/usuario/',
             user: {},
             eventos: {},
-            convidados: {}
+            convidados: {},
+            eventosSearch: {}
         };
     },
     // App root methods
@@ -107,16 +108,29 @@ $$('#formLogin').on('submit', function (e) {
 var resultadoPesquisa = app.t7.compile(app.$('#itemlist').html());
 
 function searchEvento(input) {
-    var encontrou = false;
-    app.data.eventos.forEach(function (evento) {
-        if (evento.nome.toUpperCase().includes(input.toUpperCase())) {
-            app.$("#searchresults").empty().html(resultadoPesquisa(evento));
-            encontrou = true;
+    $.ajax({
+        url: app.data.BASE_URL + "search",
+        type: 'GET',
+        data: {
+            input: input
+        },
+        contentType: 'application/json',
+        dataType: 'jsonp',
+        success: function (data) {
+            app.data.eventosSearch = JSON.parse(JSON.stringify(data));
+            var encontrou = false;
+            app.data.eventosSearch.forEach(function (evento) {
+                app.$("#searchresults").empty().html(resultadoPesquisa(evento));
+                encontrou = true;
+            });
+            if (!encontrou) {
+                app.dialog.alert("Sem resultados.");
+            }
+        },
+        error: function (request, textStatus, errorThrown) {
+            alert(errorThrown + ' Status: ' + textStatus);
         }
     });
-    if (!encontrou) {
-        app.dialog.alert("Sem resultados.");
-    }
 }
 
 function listaConvidados(idEvento) {
@@ -204,24 +218,33 @@ function cadastraAviso(idEvento) {
 }
 
 function cadastraConvidado(idEvento) {
-    $.ajax({
-        url: app.data.BASE_URL + "novoConvidado",
-        type: 'GET',
-        data: {
-            idEvento: idEvento,
-            nome: $('#nomeConvidado').val(),
-            email: $('#emailConvidado').val(),
-            cpf: $('#cpfConvidado').val()
-        },
-        contentType: 'application/json',
-        dataType: 'jsonp',
-        success: function (data) {
-            app.dialog.alert("Convidado cadastrado com sucesso!");
-        },
-        error: function (request, textStatus, errorThrown) {
-            alert(errorThrown + ' Status: ' + textStatus);
-        }
-    });
+    if ($('#nomeConvidado').val() == '' || $('#emailConvidado').val() == '' || $('#cpfConvidado').val() == '') {
+        app.dialog.alert("ATENÇÃO: o convidado não foi cadastrado pois estava incompleto.");
+    } else {
+        $.ajax({
+            url: app.data.BASE_URL + "novoConvidado",
+            type: 'GET',
+            data: {
+                idEvento: idEvento,
+                nome: $('#nomeConvidado').val(),
+                email: $('#emailConvidado').val(),
+                cpf: $('#cpfConvidado').val()
+            },
+            contentType: 'application/json',
+            dataType: 'jsonp',
+            success: function (data) {
+                if (JSON.stringify(data) == 'false') {
+                    app.dialog.alert("ATENÇÃO: o convidado não foi cadastrado pois o email e/ou cpf já existem.");
+                } else {
+                    app.dialog.alert("Convidado cadastrado com sucesso!");
+                    listaConvidados(idEvento)
+                }
+            },
+            error: function (request, textStatus, errorThrown) {
+                alert(errorThrown + ' Status: ' + textStatus);
+            }
+        });
+    }
 }
 
 function logout() {
