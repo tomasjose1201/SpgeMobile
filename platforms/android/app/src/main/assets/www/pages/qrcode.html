@@ -13,10 +13,19 @@
         </div>
         <div class="page-content">
             <div class="block block-strong">
-                <a target="_blank" onClick="scanQR();"><button class="col button button-outline color-blue">Scan</button></a>
-                <br>
-                <a target="_blank" href="/display/"><button class="col button button-outline color-blue">Confirmar Presença</button></a>
+                <a target="_blank" onClick="scanQR({{convidado}}, {{idEvento}});"><button class="col button button-outline color-blue">Scan</button></a>
             </div>
         </div>
     </div> 
 </template>
+<script>
+    return {
+        data: function () {
+            return {
+                idEvento: this.$route.params.id,
+                convidado: app.data.convidadoLogado
+            };
+        }
+    }
+    ;
+</script>

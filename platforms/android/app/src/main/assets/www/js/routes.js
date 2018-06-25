@@ -5,7 +5,26 @@ routes = [
     },
     {
         path: '/eventos/',
-        componentUrl: './pages/eventos.html'
+        componentUrl: './pages/eventos.html',
+        on: {
+            pageInit: function (event, page) {
+                $.ajax({
+                    url: app.data.BASE_URL + "idConvidado",
+                    type: 'GET',
+                    data: {
+                        idUsuario: app.data.user.idUsuario
+                    },
+                    contentType: 'application/json',
+                    dataType: 'jsonp',
+                    success: function (data) {
+                        app.data.convidadoLogado = JSON.parse(JSON.stringify(data));
+                    },
+                    error: function (request, textStatus, errorThrown) {
+                        alert(errorThrown + ' Status: ' + textStatus);
+                    }
+                });
+            }
+        }
     },
     {
         path: '/perfil/',
@@ -21,12 +40,7 @@ routes = [
     },
     {
         path: '/convidado/:id/',
-        componentUrl: './pages/convidado.html',
-        on: {
-            pageInit: function (event, page) {
-                $('#cpfConvidado').mask("999.999.999-99");
-            }
-        }
+        componentUrl: './pages/convidado.html'
     },
     {
         path: '/listaConv/:id/',
@@ -35,10 +49,6 @@ routes = [
     {
         path: '/qrcode/:id/',
         componentUrl: './pages/qrcode.html'
-    },
-    {
-        path: '/display/',
-        componentUrl: './pages/display.html'
     },
     {
         path: "/search/",

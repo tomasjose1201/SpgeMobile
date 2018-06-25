@@ -10,12 +10,13 @@ var app = new Framework7({
     // App root data
     data: function () {
         return {
-            BASE_URL: 'http://192.168.0.28:8080/spge/webresources/usuario/',
+            BASE_URL: 'http://192.168.0.16:8080/spge/webresources/usuario/',
             user: {},
             eventos: {},
             convidados: {},
             eventosSearch: {},
-            resultScan: {}
+            resultScan: {},
+            convidadoLogado: {}
         };
     },
     // App root methods
@@ -180,13 +181,13 @@ function presencaConvidado(idConvidado, idEvento) {
         type: 'GET',
         data: {
             idConvidado: idConvidado,
-            idEvento: idEvento,
-            statusPresenca: 'P'
+            idEvento: idEvento
         },
         contentType: 'application/json',
         dataType: 'jsonp',
         success: function (data) {
             listaConvidados(idEvento)
+            app.dialog.alert("Presença confirmada com sucesso!");
         },
         error: function (request, textStatus, errorThrown) {
             alert(errorThrown + ' Status: ' + textStatus);
@@ -309,6 +310,7 @@ function atualizaUsuario(idUsuario) {
 }
 
 $(document).ready(function () {
+    localStorage.clear();
     if (localStorage.getItem("LocalData") === null) {
         var data = [];
         data = JSON.stringify(data);
@@ -316,19 +318,17 @@ $(document).ready(function () {
     }
 });
 
-function scanQR() {
+function scanQR(idConvidado, idEvento) {
     cordova.plugins.barcodeScanner.scan(
             function (result) {
                 if (!result.cancelled) {
                     if (result.format === "QR_CODE") {
                         var value = result.text;
-
-                        var data = localStorage.getItem("LocalData");
-                        data = JSON.parse(data);
-                        data[data.length] = {"url": value};
-
-                        localStorage.setItem("LocalData", JSON.stringify(data));
-                        montaTabela();
+                        if(idEvento == value) {
+                            presencaConvidado(idConvidado, value);
+                        } else {
+                            app.dialog.alert("A presença não foi confirmada pois o QR-CODE escaneado é inválido.");
+                        }
                     }
                 }
             },
@@ -336,16 +336,6 @@ function scanQR() {
                 alert("Scanning failed: " + error);
             }
     );
-}
-
-function montaTabela() {
-    var data = localStorage.getItem("LocalData");
-    app.data.resultScan = JSON.parse(data);
-}
-
-function openURL(url) {
-    alert("openURL");
-    window.open(url, '_blank', 'location=yes');
 }
 
 function logout() {
