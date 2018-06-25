@@ -14,7 +14,8 @@ var app = new Framework7({
             user: {},
             eventos: {},
             convidados: {},
-            eventosSearch: {}
+            eventosSearch: {},
+            resultScan: {}
         };
     },
     // App root methods
@@ -307,6 +308,47 @@ function atualizaUsuario(idUsuario) {
     }
 }
 
+$(document).ready(function () {
+    if (localStorage.getItem("LocalData") === null) {
+        var data = [];
+        data = JSON.stringify(data);
+        localStorage.setItem("LocalData", data);
+    }
+});
+
+function scanQR() {
+    cordova.plugins.barcodeScanner.scan(
+            function (result) {
+                if (!result.cancelled) {
+                    if (result.format === "QR_CODE") {
+                        var value = result.text;
+
+                        var data = localStorage.getItem("LocalData");
+                        data = JSON.parse(data);
+                        data[data.length] = {"url": value};
+
+                        localStorage.setItem("LocalData", JSON.stringify(data));
+                        montaTabela();
+                    }
+                }
+            },
+            function (error) {
+                alert("Scanning failed: " + error);
+            }
+    );
+}
+
+function montaTabela() {
+    var data = localStorage.getItem("LocalData");
+    app.data.resultScan = JSON.parse(data);
+}
+
+function openURL(url) {
+    alert("openURL");
+    window.open(url, '_blank', 'location=yes');
+}
+
 function logout() {
+    localStorage.clear();
     window.location.reload();
 }

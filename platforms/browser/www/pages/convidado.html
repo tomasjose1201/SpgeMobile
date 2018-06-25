@@ -1,5 +1,5 @@
 <template>
-    <div class="page" data-name="avisos">
+    <div class="page" data-name="convidado">
         <div class="navbar">
             <div class="navbar-inner sliding">
                 <div class="left">
@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="page-content">
-            <div class="block-title"><h4>Cadastrar Convidado</h4></div>
+            <div class="block-title"><h4>Novo Convidado</h4></div>
             <div class="list no-hairlines-md">
                 <ul>
                     <li>
@@ -20,7 +20,7 @@
                             <div class="item-inner">
                                 <div class="item-title item-label">Nome</div>
                                 <div class="item-input-wrap">
-                                    <input type="text"/>
+                                    <input type="text" id="nomeConvidado"/>
                                 </div>
                             </div>
                         </div>
@@ -30,7 +30,7 @@
                             <div class="item-inner">
                                 <div class="item-title item-label">Email</div>
                                 <div class="item-input-wrap">
-                                    <input type="email"/>
+                                    <input type="text" id="emailConvidado"/>
                                 </div>
                             </div>
                         </div>
@@ -40,16 +40,29 @@
                             <div class="item-inner">
                                 <div class="item-title item-label">CPF</div>
                                 <div class="item-input-wrap">
-                                    <input type="text"/>
+                                    <input type="text" id="cpfConvidado"/>
                                 </div>
                             </div>
                         </div>
                     </li>
                     <li>
-                        <br><button class="button">Salvar</button>
+                        <br>
+                        <a class="button link back color-blue" onClick="cadastraConvidado({{eventoId}})">
+                            Salvar
+                        </a>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
 </template>
+<script>
+    return {
+    data: function () {
+    return {
+    eventoId: this.$route.params.id
+    };
+    }
+    }
+    ;
+</script>

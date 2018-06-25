@@ -12,6 +12,12 @@
     },
     "phonegap-plugin-barcodescanner": {
       "PACKAGE_NAME": "com.coolappz.spgemobile"
+    },
+    "cordova-plugin-dialogs": {
+      "PACKAGE_NAME": "com.coolappz.spgemobile"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "com.coolappz.spgemobile"
     }
   },
   "dependent_plugins": {}

@@ -17,7 +17,7 @@
                             <div class="item-inner">
                                 <div class="item-title item-label">Nome</div>
                                 <div class="item-input-wrap">
-                                    <input type="text" value="{{perfil.nome}}" placeholder="Nome Exemplo"/>
+                                    <input type="text" id="nomeUsuario" value="{{perfil.nome}}" placeholder="Nome Exemplo"/>
                                 </div>
                             </div>
                         </div>
@@ -25,9 +25,9 @@
                     <li>
                         <div class="item-content item-input">
                             <div class="item-inner">
-                                <div class="item-title item-label">Email</div>
+                                <div class="item-title item-label" style="color:red">* Email</div>
                                 <div class="item-input-wrap">
-                                    <input type="email" value="{{perfil.email}}" placeholder="email@example.com"/>
+                                    <input type="email" value="{{perfil.email}}" disabled/>
                                 </div>
                             </div>
                         </div>
@@ -35,19 +35,9 @@
                     <li>
                         <div class="item-content item-input">
                             <div class="item-inner">
-                                <div class="item-title item-label">Senha</div>
+                                <div class="item-title item-label" style="color:red">* CPF</div>
                                 <div class="item-input-wrap">
-                                    <input type="password" value="{{perfil.senha}}" placeholder="Senha"/>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="item-content item-input">
-                            <div class="item-inner">
-                                <div class="item-title item-label">CPF</div>
-                                <div class="item-input-wrap">
-                                    <input type="text" value="{{perfil.cpf}}" placeholder="999.999.999-99" disabled/>
+                                    <input type="text" value="{{perfil.cpf}}" disabled/>
                                 </div>
                             </div>
                         </div>
@@ -57,7 +47,7 @@
                             <div class="item-inner">
                                 <div class="item-title item-label">RG</div>
                                 <div class="item-input-wrap">
-                                    <input type="text" value="{{perfil.rg}}" placeholder="99.999.999-9"/>
+                                    <input type="text" id="rgUsuario" value="{{perfil.rg}}" placeholder="99.999.999-9"/>
                                 </div>
                             </div>
                         </div>
@@ -67,7 +57,7 @@
                             <div class="item-inner">
                                 <div class="item-title item-label">Telefone</div>
                                 <div class="item-input-wrap">
-                                    <input type="text" value="{{perfil.telefone}}" placeholder="(99)999999999"/>
+                                    <input type="text" id="telefoneUsuario" value="{{perfil.telefone}}" placeholder="(99)999999999"/>
                                 </div>
                             </div>
                         </div>
@@ -77,14 +67,18 @@
                             <div class="item-inner">
                                 <div class="item-title item-label">Endereço</div>
                                 <div class="item-input-wrap">
-                                    <input type="text" value="{{perfil.endereco}}" placeholder="Ex.: Rua Exemplo, 1 - Bairro, Cidade"/>
+                                    <input type="text" id="enderecoUsuario" value="{{perfil.endereco}}" placeholder="Ex.: Rua Exemplo, 1 - Bairro, Cidade"/>
                                 </div>
                             </div>
                         </div>
                     </li>
                     <li>
                         <label class="item-checkbox item-content">
-                            <input type="checkbox" name="checkbox" checked/>
+                            {{#if perfil.estudante}}
+                                <input type="checkbox" name="checkbox" id="checkBox" checked/>
+                            {{#else}}
+                                <input type="checkbox" name="checkbox" id="checkBox"/>
+                            {{/if}}
                             <i class="icon icon-checkbox"></i>
                             <div class="item-inner">
                                 <div class="item-title">Sou Estudante</div>
@@ -96,7 +90,7 @@
                             <div class="item-inner">
                                 <div class="item-title item-label">Nº de Matrícula</div>
                                 <div class="item-input-wrap">
-                                    <input type="text" value="{{perfil.numMatricula}}" placeholder="Ex.: GRR20009999"/>
+                                    <input type="text" id="numMatricula" value="{{perfil.numMatricula}}" placeholder="Ex.: GRR20009999"/>
                                 </div>
                             </div>
                         </div>
@@ -106,7 +100,7 @@
                             <div class="item-inner">
                                 <div class="item-title item-label">Curso</div>
                                 <div class="item-input-wrap">
-                                    <input type="text" value="{{perfil.curso}}" placeholder="Ex.: Medicina"/>
+                                    <input type="text" id="curso" value="{{perfil.curso}}" placeholder="Ex.: Medicina"/>
                                 </div>
                             </div>
                         </div>
@@ -116,13 +110,17 @@
                             <div class="item-inner">
                                 <div class="item-title item-label">Instituição</div>
                                 <div class="item-input-wrap">
-                                    <input type="text" value="{{perfil.instituicao}}" placeholder="Ex.: UFPR"/>
+                                    <input type="text" id="instituicao" value="{{perfil.instituicao}}" placeholder="Ex.: UFPR"/>
                                 </div>
                             </div>
                         </div>
                     </li>
                     <li>
-                        <br><button class="button">Salvar</button>
+                        <br><p class="text-center" style="color:red">* Não podem ser atualizados pelo app.</p>
+                        <br>
+                        <a class="button color-blue" onClick="atualizaUsuario({{perfil.idUsuario}})">
+                            Salvar
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -133,7 +131,7 @@
     return {
         data: function () {
             return {
-                perfil: this.$root.user,
+                perfil: app.data.user
             };
         }
     }

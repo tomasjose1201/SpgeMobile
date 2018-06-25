@@ -232,22 +232,25 @@ public final class R {
   }
   public static final class drawable {
     public static final int flip_camera=0x7f060000;
-    public static final int launcher_icon=0x7f060001;
-    public static final int notification_action_background=0x7f060002;
-    public static final int notification_bg=0x7f060003;
-    public static final int notification_bg_low=0x7f060004;
-    public static final int notification_bg_low_normal=0x7f060005;
-    public static final int notification_bg_low_pressed=0x7f060006;
-    public static final int notification_bg_normal=0x7f060007;
-    public static final int notification_bg_normal_pressed=0x7f060008;
-    public static final int notification_icon_background=0x7f060009;
-    public static final int notification_template_icon_bg=0x7f06000a;
-    public static final int notification_template_icon_low_bg=0x7f06000b;
-    public static final int notification_tile_bg=0x7f06000c;
-    public static final int notify_panel_notification_icon_bg=0x7f06000d;
-    public static final int screen=0x7f06000e;
-    public static final int share_via_barcode=0x7f06000f;
-    public static final int toggle_torch=0x7f060010;
+    public static final int ic_action_next_item=0x7f060001;
+    public static final int ic_action_previous_item=0x7f060002;
+    public static final int ic_action_remove=0x7f060003;
+    public static final int launcher_icon=0x7f060004;
+    public static final int notification_action_background=0x7f060005;
+    public static final int notification_bg=0x7f060006;
+    public static final int notification_bg_low=0x7f060007;
+    public static final int notification_bg_low_normal=0x7f060008;
+    public static final int notification_bg_low_pressed=0x7f060009;
+    public static final int notification_bg_normal=0x7f06000a;
+    public static final int notification_bg_normal_pressed=0x7f06000b;
+    public static final int notification_icon_background=0x7f06000c;
+    public static final int notification_template_icon_bg=0x7f06000d;
+    public static final int notification_template_icon_low_bg=0x7f06000e;
+    public static final int notification_tile_bg=0x7f06000f;
+    public static final int notify_panel_notification_icon_bg=0x7f060010;
+    public static final int screen=0x7f060011;
+    public static final int share_via_barcode=0x7f060012;
+    public static final int toggle_torch=0x7f060013;
   }
   public static final class id {
     public static final int action0=0x7f070000;

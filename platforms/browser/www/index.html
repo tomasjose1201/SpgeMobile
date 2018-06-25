@@ -39,121 +39,118 @@
         <!--===============================================================================================-->
         <!-- JQuery -->
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <div id="app">
-            <!-- Views/Tabs container -->
-            <div class="views tabs ios-edges">
-                <!-- Tabbar for switching views-tabs -->
-                <div class="toolbar tabbar-labels toolbar-bottom-md" style="visibility: hidden;" id="tabbar">
-                    <div class="toolbar-inner">
-                        <!--<a href="#view-login" class="tab-link tab-link-active">
-                            <i class="icon f7-icons ios-only">home</i>
-                            <i class="icon f7-icons ios-only icon-ios-fill">home_fill</i>
-                            <i class="icon material-icons md-only">home</i>
-                            <span class="tabbar-label">Login</span>
-                        </a>-->
-                        <a href="#view-eventos" class="tab-link">
-                            <i class="icon f7-icons ios-only">list</i>
-                            <i class="icon f7-icons ios-only icon-ios-fill">list_fill</i>
-                            <i class="icon material-icons md-only">list</i>
-                            <span class="tabbar-label">Eventos</span>
-                        </a>
-                        <a href="#view-perfil" class="tab-link">
-                            <i class="icon f7-icons ios-only">settings</i>
-                            <i class="icon f7-icons ios-only icon-ios-fill">settings_fill</i>
-                            <i class="icon material-icons md-only">account_circle</i>
-                            <span class="tabbar-label">Perfil</span>
-                        </a>
-                    </div>
+        <script src="vendor/jquery/jquery.maskedinput-1.1.4.pack.js"/></script>
+</head>
+<body>
+    <div id="app">
+        <!-- Views/Tabs container -->
+        <div class="views tabs ios-edges">
+            <!-- Tabbar for switching views-tabs -->
+            <div class="toolbar tabbar-labels toolbar-bottom-md" style="visibility: hidden;" id="tabbar">
+                <div class="toolbar-inner">
+                    <a href="#view-eventos" class="tab-link">
+                        <i class="icon f7-icons ios-only">list</i>
+                        <i class="icon f7-icons ios-only icon-ios-fill">list_fill</i>
+                        <i class="icon material-icons md-only">list</i>
+                        <span class="tabbar-label">Eventos</span>
+                    </a>
+                    <a href="#view-perfil" class="tab-link">
+                        <i class="icon f7-icons ios-only">settings</i>
+                        <i class="icon f7-icons ios-only icon-ios-fill">settings_fill</i>
+                        <i class="icon material-icons md-only">account_circle</i>
+                        <span class="tabbar-label">Perfil</span>
+                    </a>
                 </div>
-                <!-- Your main view/tab, should have "view-main" class. It also has "tab-active" class -->
-                <div id="view-login" class="view view-main tab tab-active">
-                    <div class="limiter">
-                        <div class="container-login100">
-                            <div class="wrap-login100 p-l-25 p-r-25 p-t-65 p-b-50">
-                                <form class="login100-form validate-form" id="formLogin" method="POST">
-                                    <span class="login100-form-title p-b-33">
-                                        SPGE Mobile
-                                    </span>
+            </div>
+            <!-- Login View -->
+            <div id="view-login" class="view view-main tab tab-active">
+                <div class="limiter">
+                    <div class="container-login100">
+                        <div class="wrap-login100 p-l-25 p-r-25 p-t-65 p-b-50">
+                            <form class="login100-form validate-form" id="formLogin" method="POST">
+                                <span class="login100-form-title p-b-33">
+                                    SPGE Mobile
+                                </span>
 
-                                    <div class="wrap-input100">
-                                        <input class="input100" type="email" name="email" placeholder="Email" required>
-                                        <span class="focus-input100-1"></span>
-                                        <span class="focus-input100-2"></span>
-                                    </div>
+                                <div class="wrap-input100">
+                                    <input class="input100" type="email" name="email" id="email" placeholder="Email" required>
+                                    <span class="focus-input100-1"></span>
+                                    <span class="focus-input100-2"></span>
+                                </div>
 
-                                    <div class="wrap-input100 rs1">
-                                        <input class="input100" type="password" name="senha" placeholder="Senha" required>
-                                        <span class="focus-input100-1"></span>
-                                        <span class="focus-input100-2"></span>
-                                    </div>
+                                <div class="wrap-input100 rs1">
+                                    <input class="input100" type="password" name="senha" id="senha" placeholder="Senha" required>
+                                    <span class="focus-input100-1"></span>
+                                    <span class="focus-input100-2"></span>
+                                </div>
 
-                                    <div class="container-login100-form-btn m-t-20">
-                                        <button type="submit" class="col button button-fill color-theme-blue">
-                                            Login
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <!-- Eventos View -->
-                <div id="view-eventos" class="view tab">
-
-                </div>
-
-                <!-- Perfil View -->
-                <div id="view-perfil" class="view tab">
-
-                </div>
-
-                <div id="itemlist" style="visibility: hidden;">
-                    <div class="card demo-card-header-pic">
-                        <div 
-                            style="background-image:url(http://placehold.it/1200x600);"
-                            class="card-header align-items-flex-end">
-                        </div>
-                        <div class="card-content card-content-padding">
-                            <h4>{{nome}}</h4>
-                            <p>{{descricao}}</p>
-                        </div>
-                        <div class="card-footer">
-                            <a href="/qrcode/{{id}}/"><button class="col button color-green">QR-CODE</button></a>
-                            <a href="/details/{{id}}/"><button class="col button color-theme-blue">Ver Mais</button></a>
+                                <div class="container-login100-form-btn m-t-20">
+                                    <button type="submit" class="col button button-fill color-theme-blue">
+                                        Login
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
+
+
+            <!-- Eventos View -->
+            <div id="view-eventos" class="view tab">
+
+            </div>
+
+            <!-- Perfil View -->
+            <div id="view-perfil" class="view tab">
+
+            </div>
+            
+            
+            <div id="itemlist" style="visibility: hidden;">
+                <div class="card demo-card-header-pic">
+                    <div 
+                        style="background-image:url(http://placehold.it/1200x600);"
+                        class="card-header align-items-flex-end">
+                    </div>
+                    <div class="card-content card-content-padding">
+                        <h4>{{nome}}</h4>
+                        <p>{{descricao}}</p>
+                    </div>
+                    <center>
+                        <!--<div class="card-footer"></div>-->
+                            <a href="/details/{{idEvento}}/"><button class="col button color-theme-blue">Ver Mais</button></a>
+                        
+                    </center>
+                </div>
+            </div>
         </div>
+    </div>
 
-        <!-- Cordova -->
-        <script src="cordova.js"></script>
-        <!-- Framework7 library -->
-        <script src="framework7/js/framework7.min.js"></script>
-        <!-- App routes -->
-        <script src="js/routes.js"></script>
-        <!-- Your custom app scripts -->
-        <script src="js/app.js"></script>
-        <!--===============================================================================================-->
-        <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-        <!--===============================================================================================-->
-        <script src="vendor/animsition/js/animsition.min.js"></script>
-        <!--===============================================================================================-->
-        <script src="vendor/bootstrap/js/popper.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-        <!--===============================================================================================-->
-        <script src="vendor/select2/select2.min.js"></script>
-        <!--===============================================================================================-->
-        <script src="vendor/daterangepicker/moment.min.js"></script>
-        <script src="vendor/daterangepicker/daterangepicker.js"></script>
-        <!--===============================================================================================-->
-        <script src="vendor/countdowntime/countdowntime.js"></script>
-        <!--===============================================================================================-->
-        <script src="js/main.js"></script>
-
-    </body>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <!-- Cordova -->
+    <script src="cordova.js"></script>
+    <!-- Framework7 library -->
+    <script src="framework7/js/framework7.min.js"></script>
+    <!-- App routes -->
+    <script src="js/routes.js"></script>
+    <!-- Your custom app scripts -->
+    <script src="js/app.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/bootstrap/js/popper.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/daterangepicker/moment.min.js"></script>
+    <script src="vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="js/main.js"></script>
+</body>
 </html>

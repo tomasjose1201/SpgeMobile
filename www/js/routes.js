@@ -37,6 +37,10 @@ routes = [
         componentUrl: './pages/qrcode.html'
     },
     {
+        path: '/display/',
+        componentUrl: './pages/display.html'
+    },
+    {
         path: "/search/",
         url: "./pages/search.html",
         on: {

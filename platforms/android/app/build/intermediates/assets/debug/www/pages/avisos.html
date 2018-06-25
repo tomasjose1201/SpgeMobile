@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="page-content">
-            <div class="block-title"><h4>Cadastrar Novo Aviso</h4></div>
+            <div class="block-title"><h4>Novo Aviso</h4></div>
             <div class="list no-hairlines-md">
                 <ul>
                     <li>
@@ -20,7 +20,7 @@
                             <div class="item-inner">
                                 <div class="item-title item-label">Assunto</div>
                                 <div class="item-input-wrap">
-                                    <input type="text"/>
+                                    <input type="text" id="assuntoAviso" required />
                                 </div>
                             </div>
                         </div>
@@ -30,16 +30,30 @@
                             <div class="item-inner">
                                 <div class="item-title item-label">Descrição</div>
                                 <div class="item-input-wrap">
-                                    <textarea rows="3"></textarea>
+                                    <textarea rows="3" id="descrAviso" required></textarea>
+                                    <input type="hidden" id="idEvento" value="{{eventoId}}" />
                                 </div>
                             </div>
                         </div>
                     </li>
                     <li>
-                        <br><button class="button">Salvar</button>
+                        <br>
+                        <a class="button link back color-blue" onClick="cadastraAviso({{eventoId}})">
+                            Salvar
+                        </a>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
 </template>
+<script>
+    return {
+    data: function () {
+    return {
+    eventoId: this.$route.params.id
+    };
+    }
+    }
+    ;
+</script>

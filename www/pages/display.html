@@ -1,0 +1,43 @@
+<template>
+    <div class="page" id="display">
+        <div class="navbar">
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="ios-only">Voltar</span>
+                    </a>
+                </div>
+                <div class="title">Lista de Presenças</div>
+            </div>
+        </div>
+        <div class="page-content">
+            <div class="block block-strong">
+                <table data-role="table" data-mode="column" id="allTable" class="ui-responsive table-stroke">
+                    <thead>
+                        <tr>
+                            <th>Eventos Escaneados</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each results}}
+                        <tr>
+                            <td><a href="javascript:openURL('{{url}}');">{{url}}</a></td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div> 
+</template>
+<script>
+    return {
+        data: function () {
+            return {
+                results: app.data.resultScan
+            };
+        }
+    }
+    ;
+</script>

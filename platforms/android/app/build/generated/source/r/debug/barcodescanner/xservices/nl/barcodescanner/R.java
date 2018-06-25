@@ -41,10 +41,10 @@ public final class R {
     }
     public static final class drawable {
         public static final int flip_camera = 0x7f060000;
-        public static final int launcher_icon = 0x7f060001;
-        public static final int notification_template_icon_bg = 0x7f06000a;
-        public static final int share_via_barcode = 0x7f06000f;
-        public static final int toggle_torch = 0x7f060010;
+        public static final int launcher_icon = 0x7f060004;
+        public static final int notification_template_icon_bg = 0x7f06000d;
+        public static final int share_via_barcode = 0x7f060012;
+        public static final int toggle_torch = 0x7f060013;
     }
     public static final class id {
         public static final int action0 = 0x7f070000;

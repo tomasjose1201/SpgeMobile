@@ -21,7 +21,9 @@
     "cordova": {
         "plugins": {
             "cordova-plugin-whitelist": {},
-            "phonegap-plugin-barcodescanner": {}
+            "phonegap-plugin-barcodescanner": {},
+            "cordova-plugin-dialogs": {},
+            "cordova-plugin-inappbrowser": {}
         },
         "platforms": [
             "browser",
