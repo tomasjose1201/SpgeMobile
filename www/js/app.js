@@ -10,7 +10,7 @@ var app = new Framework7({
     // App root data
     data: function () {
         return {
-            BASE_URL: 'http://192.168.0.16:8080/spge/webresources/usuario/',
+            BASE_URL: 'http://192.168.43.170:8080/spge/webresources/usuario/',
             user: {},
             eventos: {},
             convidados: {},
