@@ -58,6 +58,12 @@
             app.data.eventos.forEach(function (evento) {
                 if (evento.evento.idEvento == eventoId) {
                     eventoClicado = evento.evento;
+                } else {
+                    app.data.eventosSearch.forEach(function (eventoSearch) {
+                        if (eventoSearch.idEvento == eventoId) {
+                            eventoClicado = eventoSearch;
+                        }
+                    });
                 }
                 if (evento.evento.idUsuario == true) {
                     nomeOrganizador = app.data.user.nome;

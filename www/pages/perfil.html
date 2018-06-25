@@ -17,7 +17,7 @@
                             <div class="item-inner">
                                 <div class="item-title item-label">Nome</div>
                                 <div class="item-input-wrap">
-                                    <input type="text" value="{{perfil.nome}}" placeholder="Nome Exemplo"/>
+                                    <input type="text" id="nomeUsuario" value="{{perfil.nome}}" placeholder="Nome Exemplo"/>
                                 </div>
                             </div>
                         </div>
@@ -47,7 +47,7 @@
                             <div class="item-inner">
                                 <div class="item-title item-label">RG</div>
                                 <div class="item-input-wrap">
-                                    <input type="text" value="{{perfil.rg}}" placeholder="99.999.999-9"/>
+                                    <input type="text" id="rgUsuario" value="{{perfil.rg}}" placeholder="99.999.999-9"/>
                                 </div>
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                             <div class="item-inner">
                                 <div class="item-title item-label">Telefone</div>
                                 <div class="item-input-wrap">
-                                    <input type="text" value="{{perfil.telefone}}" placeholder="(99)999999999"/>
+                                    <input type="text" id="telefoneUsuario" value="{{perfil.telefone}}" placeholder="(99)999999999"/>
                                 </div>
                             </div>
                         </div>
@@ -67,7 +67,7 @@
                             <div class="item-inner">
                                 <div class="item-title item-label">Endereço</div>
                                 <div class="item-input-wrap">
-                                    <input type="text" value="{{perfil.endereco}}" placeholder="Ex.: Rua Exemplo, 1 - Bairro, Cidade"/>
+                                    <input type="text" id="enderecoUsuario" value="{{perfil.endereco}}" placeholder="Ex.: Rua Exemplo, 1 - Bairro, Cidade"/>
                                 </div>
                             </div>
                         </div>
@@ -75,9 +75,9 @@
                     <li>
                         <label class="item-checkbox item-content">
                             {{#if perfil.estudante}}
-                                <input type="checkbox" name="checkbox" checked/>
+                                <input type="checkbox" name="checkbox" id="checkBox" checked/>
                             {{#else}}
-                                <input type="checkbox" name="checkbox"/>
+                                <input type="checkbox" name="checkbox" id="checkBox"/>
                             {{/if}}
                             <i class="icon icon-checkbox"></i>
                             <div class="item-inner">
@@ -117,7 +117,10 @@
                     </li>
                     <li>
                         <br><p class="text-center" style="color:red">* Não podem ser atualizados pelo app.</p>
-                        <br><button class="button">Salvar</button>
+                        <br>
+                        <a class="button color-blue" onClick="atualizaUsuario({{perfil.idUsuario}})">
+                            Salvar
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -125,13 +128,10 @@
     </div>
 </template>
 <script>
-    alert("Hello.");
-</script>
-<script>
     return {
         data: function () {
             return {
-                perfil: app.data.user,
+                perfil: app.data.user
             };
         }
     }

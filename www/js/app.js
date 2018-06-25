@@ -247,6 +247,66 @@ function cadastraConvidado(idEvento) {
     }
 }
 
+function atualizaUsuario(idUsuario) {
+    if ($('#checkBox').prop('checked')) {
+        if ($('#numMatricula').val() == '' || $('#curso').val() == '' || $('#instituicao').val() == '') {
+            app.dialog.alert("Preencha os dados de estudante antes de salvar.");
+        } else {
+            //ajax para atualizar os dados cadastrais do usuário
+            $.ajax({
+                url: app.data.BASE_URL + "atualizar",
+                type: 'GET',
+                data: {
+                    idUsuario: idUsuario,
+                    nome: $('#nomeUsuario').val(),
+                    rg: $('#rgUsuario').val(),
+                    telefone: $('#telefoneUsuario').val(),
+                    endereco: $('#enderecoUsuario').val(),
+                    estudante: 'S',
+                    numMatricula: $('#numMatricula').val(),
+                    curso: $('#curso').val(),
+                    instituicao: $('#instituicao').val()
+                },
+                contentType: 'application/json',
+                dataType: 'jsonp',
+                success: function (data) {
+                    app.dialog.alert("Dados atualizados com sucesso!");
+                },
+                error: function (request, textStatus, errorThrown) {
+                    alert(errorThrown + ' Status: ' + textStatus);
+                }
+            });
+        }
+    } else {
+        $('#numMatricula').val('');
+        $('#curso').val('');
+        $('#instituicao').val('');
+        $.ajax({
+            url: app.data.BASE_URL + "atualizar",
+            type: 'GET',
+            data: {
+                idUsuario: idUsuario,
+                nome: $('#nomeUsuario').val(),
+                rg: $('#rgUsuario').val(),
+                telefone: $('#telefoneUsuario').val(),
+                endereco: $('#enderecoUsuario').val(),
+                estudante: 'N',
+                numMatricula: '',
+                curso: '',
+                instituicao: ''
+            },
+            contentType: 'application/json',
+            dataType: 'jsonp',
+            success: function (data) {
+                app.dialog.alert("Dados atualizados com sucesso!");
+            },
+            error: function (request, textStatus, errorThrown) {
+                alert(errorThrown + ' Status: ' + textStatus);
+            }
+        });
+    }
+}
+
 function logout() {
     window.location.reload();
 }
